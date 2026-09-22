@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#0f2e1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Delleeeyyy, my loveloveee</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.75rem, 3vw, 2rem) clamp(0.5rem, 3vw, 1.5rem);
+      font-family: 'Inter', 'Segoe UI', 'Georgia', serif;
+      background: #0f2e1a;
+      background-image: linear-gradient(145deg, #1b4d26 0%, #0d2b14 100%);
+      position: relative;
+      overflow-x: hidden;
+      animation: pageFadeIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+      touch-action: manipulation;
+    }
+
+    @keyframes pageFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+    /* ---------- PHOTO SCROLL ROWS ---------- */
+    .photo-rows {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.9;
+      filter: saturate(1.1) brightness(1);
+    }
+
+    .photo-row {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      gap: clamp(10px, 2vw, 20px);
+    }
+
+    .photo-row.top    { top: 2%;   height: clamp(90px, 16vw, 180px); }
+    .photo-row.middle { top: 50%;  height: clamp(90px, 16vw, 180px); transform: translateY(-50%); }
+    .photo-row.bottom { bottom: 2%; height: clamp(90px, 16vw, 180px); }
+
+    .photo-track {
+      display: flex;
+      gap: clamp(10px, 2vw, 20px);
+      flex-shrink: 0;
+      animation: scrollLeft 140s linear infinite;
+      will-change: transform;
+    }
+
+    .photo-track.reverse { animation: scrollRight 140s linear infinite; }
+
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes scrollRight {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .photo-track img {
+      width: clamp(130px, 22vw, 260px);
+      height: clamp(90px, 16vw, 180px);
+      object-fit: cover;
+      border-radius: clamp(8px, 1.5vw, 14px);
+      border: clamp(2px, 0.4vw, 3px) solid rgba(200, 240, 180, 0.65);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+      background: #1b3d24;
+    }
+
+    .photo-rows::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(15, 45, 25, 0.25) 0%, rgba(10, 30, 15, 0.6) 85%),
+        linear-gradient(180deg, rgba(10, 30, 15, 0.15) 0%, rgba(10, 30, 15, 0.35) 50%, rgba(10, 30, 15, 0.15) 100%);
+      pointer-events: none;
+    }
+
+    /* ---------- FLOATING HEARTS ---------- */
+    .hearts-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 24px;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+      filter: drop-shadow(0 0 6px rgba(255, 150, 180, 0.7));
+      will-change: transform, opacity;
+    }
+
+    .heart:nth-child(odd)  { color: #ff9ec4; }
+    .heart:nth-child(even) { color: #ffc9d9; }
+    .heart:nth-child(3n)   { color: #ffb3c9; font-size: 32px; }
+    .heart:nth-child(4n)   { color: #ffd6e4; font-size: 18px; }
+    .heart:nth-child(5n)   { color: #ff7fa8; font-size: 28px; }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) translateX(0) rotate(0deg) scale(0.6); opacity: 0; }
+      10% { opacity: 0.9; }
+      50% { transform: translateY(-55vh) translateX(40px) rotate(180deg) scale(1); opacity: 0.75; }
+      90% { opacity: 0.35; }
+      100% { transform: translateY(-110vh) translateX(-40px) rotate(360deg) scale(0.4); opacity: 0; }
+    }
+
+    .ambient-glow {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      background: radial-gradient(circle at 20% 30%, rgba(170,240,150,0.1) 0%, transparent 50%);
+      animation: glowDrift 12s ease-in-out infinite alternate;
+    }
+    @keyframes glowDrift {
+      0% { background-position: 0% 0%; opacity: 0.6; }
+      100% { background-position: 15% 10%; opacity: 1; }
+    }
+
+    .particles {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 2;
+      background-image:
+        radial-gradient(2px 2px at 15% 25%, rgba(255,255,200,0.15) 0%, transparent 100%),
+        radial-gradient(2px 2px at 75% 45%, rgba(255,255,220,0.12) 0%, transparent 100%),
+        radial-gradient(3px 3px at 40% 80%, rgba(220,255,200,0.1) 0%, transparent 100%);
+      background-repeat: no-repeat;
+      background-size: 200% 200%;
+      animation: particleDrift 30s infinite alternate ease-in-out;
+    }
+    @keyframes particleDrift {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 15% 10%; }
+    }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      position: relative;
+      z-index: 20;
+      max-width: 620px;
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1.2rem, 4vw, 2.5rem) clamp(1.8rem, 5vw, 2.8rem);
+      background: rgba(251, 250, 242, 0.92);
+      backdrop-filter: blur(10px) saturate(1.2);
+      -webkit-backdrop-filter: blur(10px) saturate(1.2);
+      border-radius: 10px;
+      box-shadow:
+        0 30px 60px -15px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(200,190,150,0.95),
+        inset 0 0 35px rgba(235,225,180,0.4);
+      border: 1px solid rgba(214, 207, 184, 0.95);
+      animation: coverEnter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    @keyframes coverEnter {
+      0% { opacity: 0; transform: translateY(40px) scale(0.94); filter: blur(5px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    .cover:hover { transform: translateY(-6px) scale(1.01); }
+    .cover:active { transform: translateY(-2px) scale(0.99); }
+
+    .cover .cover-photo {
+      position: relative;
+      width: clamp(160px, 45vw, 240px);
+      height: clamp(160px, 45vw, 240px);
+      margin: 0 auto 1.3rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid rgba(200, 240, 180, 0.7);
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 0 8px rgba(251, 250, 242, 0.8),
+        0 0 0 12px rgba(200, 240, 180, 0.4);
+      animation: photoFloat 3.5s ease-in-out infinite;
+    }
+
+    @keyframes photoFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .cover .cover-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .cover:hover .cover-photo img { transform: scale(1.08); }
+
+    .cover .cover-photo::before {
+      content: '💚';
+      position: absolute;
+      top: -6px; right: -6px;
+      font-size: 1.6rem;
+      opacity: 0.9;
+      animation: heartSpin 4s linear infinite;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      z-index: 2;
+    }
+
+    @keyframes heartSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    .cover .cover-title {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: clamp(3px, 1vw, 6px);
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #1e4a1e 0%, #3a7a3a 40%, #1e4a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .cover .cover-subtitle {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: clamp(0.72rem, 2vw, 0.9rem);
+      letter-spacing: clamp(1.5px, 0.6vw, 3px);
+      text-transform: uppercase;
+      color: #6a7a5a;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+
+    .cover .cover-message {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+      line-height: 1.7;
+      color: #2a3f22;
+      font-style: italic;
+      margin-bottom: 1.8rem;
+    }
+
+    .cover .cover-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #2a6b2a 0%, #1e4a1e 100%);
+      color: #f4f9f0;
+      padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 36px);
+      border-radius: 50px;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+      animation: coverPulse 2s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    @keyframes coverPulse {
+      0%, 100% { box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 0 0 rgba(150, 255, 120, 0.5); }
+      50%      { box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 0 14px rgba(150, 255, 120, 0); }
+    }
+
+    .cover .cover-button .arrow {
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .cover:hover .cover-button .arrow { transform: translateX(6px); }
+
+    /* ---------- LETTER ---------- */
+    .letter-wrapper {
+      position: relative;
+      z-index: 10;
+      max-width: 820px;
+      width: 100%;
+      display: none;
+      margin: auto;
+    }
+
+    .letter-wrapper.revealed {
+      display: block;
+      animation: letterReveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes letterReveal {
+      0% { opacity: 0; transform: translateY(60px) scale(0.9); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    .letter {
+      position: relative;
+      background: rgba(251, 250, 242, 0.85);
+      backdrop-filter: blur(6px) saturate(1.2);
+      -webkit-backdrop-filter: blur(6px) saturate(1.2);
+      background-image:
+        repeating-linear-gradient(0deg, rgba(243, 239, 226, 0.4) 0px, rgba(243, 239, 226, 0.4) 1px, transparent 1px, transparent 5px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(248, 246, 236, 0.75) 100%);
+      padding: clamp(2.8rem, 5vw, 3.5rem) clamp(1.1rem, 3.5vw, 3rem) clamp(1.5rem, 4vw, 2.8rem);
+      border-radius: 4px;
+      box-shadow:
+        0 30px 45px -15px rgba(0,0,0,0.7),
+        0 10px 20px -8px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(200,190,150,0.8),
+        inset 0 0 35px rgba(235,225,180,0.35);
+      border: 1px solid rgba(214, 207, 184, 0.9);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
+    }
+
+    @media (hover: hover) {
+      .letter:hover { background: rgba(251, 250, 242, 0.9); }
+    }
+
+    .letter::before {
+      content: '';
+      position: absolute;
+      top: clamp(12px, 2vw, 18px); left: 10%;
+      width: 80%; height: 2px;
+      background: linear-gradient(90deg, transparent, #c2b89a 20%, #a89f82 50%, #c2b89a 80%, transparent);
+      opacity: 0.6;
+    }
+
+    .letter::after {
+      content: '🌿';
+      position: absolute;
+      top: clamp(10px, 2vw, 18px); right: clamp(60px, 10vw, 70px);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      opacity: 0.5;
+      transform: rotate(12deg);
+      pointer-events: none;
+    }
+
+    /* ---------- CLOSE BUTTON ---------- */
+    .close-btn {
+      position: absolute;
+      top: clamp(8px, 1.5vw, 12px);
+      right: clamp(8px, 1.5vw, 14px);
+      z-index: 30;
+      width: clamp(36px, 6vw, 42px);
+      height: clamp(36px, 6vw, 42px);
+      border-radius: 50%;
+      background: rgba(30, 74, 30, 0.95);
+      color: #f4f9f0;
+      border: 2px solid rgba(200, 240, 180, 0.7);
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .close-btn:hover {
+      background: rgba(60, 120, 60, 0.98);
+      transform: rotate(90deg) scale(1.12);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.6), 0 0 0 4px rgba(150, 255, 120, 0.25);
+    }
+
+    .close-btn:active { transform: rotate(90deg) scale(0.95); }
+
+    .paper-lines {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg,
+        transparent 0px, transparent 28px,
+        rgba(190,180,150,0.18) 28px, rgba(190,180,150,0.18) 29px);
+      background-size: 100% 29px;
+      mask-image: linear-gradient(to bottom, transparent 5%, black 15%, black 85%, transparent 95%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 15%, black 85%, transparent 95%);
+      opacity: 0.8;
+      border-radius: 4px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .brand-header {
+      text-align: center;
+      margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+      padding-bottom: clamp(0.8rem, 2vw, 1.2rem);
+      border-bottom: 3px double #c7b88b;
+    }
+
+    .brand-header h2 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.4rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: clamp(3px, 1.2vw, 8px);
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #1e4a1e 0%, #3a7a3a 40%, #1e4a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      padding: 0 clamp(0.5rem, 1.5vw, 1.2rem);
+      position: relative;
+    }
+
+    .brand-header h2::before,
+    .brand-header h2::after {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(0.7rem, 1.5vw, 1rem);
+      color: #8fbf7a;
+      opacity: 0.8;
+    }
+    .brand-header h2::before { left: -8px; }
+    .brand-header h2::after { right: -8px; }
+
+    .brand-header .tagline {
+      display: block;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: clamp(0.62rem, 1.6vw, 0.75rem);
+      letter-spacing: clamp(2px, 0.8vw, 4px);
+      text-transform: uppercase;
+      color: #7a8a6a;
+      margin-top: 0.6rem;
+      font-weight: 600;
+    }
+
+    /* ---------- LETTER TYPOGRAPHY ---------- */
+    .letter h1 {
+      font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+      font-weight: 300;
+      color: #1a331a;
+      margin-bottom: clamp(1rem, 2.5vw, 1.8rem);
+      display: inline-block;
+      border-bottom: 4px solid #c7b88b;
+      padding-bottom: clamp(4px, 1vw, 8px);
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .letter p {
+      font-size: clamp(0.9rem, 2.4vw, 1.1rem);
+      line-height: 1.85;
+      color: #1f3320;
+      margin-bottom: clamp(0.9rem, 2vw, 1.4rem);
+      text-align: justify;
+      word-spacing: 0.3px;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+
+    .letter p:first-of-type { text-indent: 0; }
+
+    .letter p:first-of-type::first-letter {
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      float: left;
+      line-height: 0.9;
+      margin-right: clamp(8px, 1.5vw, 14px);
+      margin-top: 6px;
+      font-weight: 600;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(135deg, #1e4a1e, #32632c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .signature {
+      margin-top: clamp(1.8rem, 4vw, 2.8rem);
+      text-align: right;
+      font-family: 'Brush Script MT', 'Dancing Script', 'Georgia', cursive;
+      font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+      color: #2a4725;
+      border-top: 2px dashed #b8b09a;
+      padding-top: clamp(0.9rem, 2vw, 1.4rem);
+      letter-spacing: 2px;
+      transform: rotate(-1deg);
+    }
+
+    .signature small {
+      display: block;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+      color: #5f6d50;
+      letter-spacing: 2px;
+      margin-top: 6px;
+      font-style: normal;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ---------- LOVE TOAST POPUP ---------- */
+    .love-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      z-index: 500;
+      background: rgba(30, 74, 30, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #f4f9f0;
+      padding: clamp(1.5rem, 4vw, 2.2rem) clamp(1.8rem, 5vw, 3rem);
+      border-radius: 20px;
+      border: 2px solid rgba(200, 240, 180, 0.7);
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 40px rgba(150, 255, 120, 0.15);
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 90vw;
+    }
+
+    .love-toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    .love-toast .toast-heart {
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
+      display: block;
+      margin-bottom: 0.8rem;
+      animation: heartBeat 1s ease-in-out infinite;
+      filter: drop-shadow(0 4px 12px rgba(255, 100, 150, 0.6));
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25%      { transform: scale(1.15); }
+      50%      { transform: scale(1); }
+      75%      { transform: scale(1.1); }
+    }
+
+    .love-toast .toast-message {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+      font-style: italic;
+      color: #e8f5e0;
+      line-height: 1.5;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ---------- REOPEN BUTTON ---------- */
+    .reopen-btn {
+      position: fixed;
+      top: max(18px, env(safe-area-inset-top, 18px));
+      right: max(14px, env(safe-area-inset-right, 14px));
+      z-index: 100;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 45, 25, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(200, 230, 180, 0.55);
+      color: #e8f5e0;
+      padding: clamp(10px, 1.8vw, 14px) clamp(16px, 2.8vw, 22px);
+      border-radius: 50px;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: clamp(0.78rem, 1.8vw, 0.9rem);
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      min-height: 44px;
+      animation: reopenPulse 2.5s ease-in-out infinite;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    @keyframes reopenPulse {
+      0%, 100% { box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 0 0 rgba(200, 240, 180, 0.4); }
+      50%      { box-shadow: 0 10px 24px rgba(0,0,0,0.5), 0 0 0 12px rgba(200, 240, 180, 0); }
+    }
+
+    .reopen-btn:hover {
+      background: rgba(25, 70, 40, 0.98);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .reopen-btn:active { transform: scale(0.97); }
+
+    .reopen-btn.show { display: inline-flex; }
+
+    .reopen-btn .reopen-icon { font-size: 1.2rem; }
+
+    /* ---------- MUSIC PLAYER ---------- */
+    .music-player {
+      position: fixed;
+      bottom: max(18px, env(safe-area-inset-bottom, 18px));
+      right: max(14px, env(safe-area-inset-right, 14px));
+      z-index: 100;
+    }
+
+    .music-display {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 1.5vw, 14px);
+      background: rgba(15, 45, 25, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(150, 255, 120, 0.7);
+      padding: clamp(10px, 1.8vw, 14px) clamp(14px, 2.5vw, 22px);
+      border-radius: 50px;
+      color: #d4e8c8;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      box-shadow: 0 0 25px rgba(100, 220, 80, 0.4), 0 10px 24px rgba(0,0,0,0.5);
+      user-select: none;
+      min-height: 48px;
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .music-player.hidden .music-display {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .music-display .icon {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      display: inline-block;
+      flex-shrink: 0;
+      animation: iconBounce 1.2s ease-in-out infinite;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.15); }
+    }
+
+    .music-display .label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.25;
+    }
+
+    .music-display .label .title {
+      font-size: clamp(0.58rem, 1.3vw, 0.68rem);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #8fbf7a;
+      font-weight: 700;
+    }
+
+    .music-display .label .song {
+      font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+      color: #e8f5e0;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: clamp(14px, 2.5vw, 18px);
+      flex-shrink: 0;
+    }
+    .equalizer span {
+      display: block;
+      width: 3px;
+      background: #8fbf7a;
+      border-radius: 2px;
+      animation: eqBounce 0.8s ease-in-out infinite alternate;
+    }
+    .equalizer span:nth-child(1) { height: 6px; animation-delay: 0s; }
+    .equalizer span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+    .equalizer span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+    .equalizer span:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+    @keyframes eqBounce { 0% { height: 4px; } 100% { height: 16px; } }
+
+    #bgMusic { display: none; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .letter-wrapper { max-width: 95%; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0.75rem 0.5rem; align-items: flex-start; padding-top: 1rem; }
+
+      .letter {
+        padding: 3rem 1.15rem 1.5rem;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+        background: rgba(251, 250, 242, 0.9);
+        backdrop-filter: blur(8px) saturate(1.15);
+        -webkit-backdrop-filter: blur(8px) saturate(1.15);
+      }
+
+      .letter p { text-align: left; hyphens: none; -webkit-hyphens: none; }
+      .letter p:first-of-type::first-letter { margin-top: 4px; }
+
+      .brand-header h2 { letter-spacing: 4px; }
+      .brand-header h2::before,
+      .brand-header h2::after { display: none; }
+
+      .photo-row.top,
+      .photo-row.middle,
+      .photo-row.bottom { height: 100px; }
+
+      .photo-track img { width: 140px; height: 100px; border-width: 2px; }
+
+      .music-player {
+        bottom: 14px;
+        right: 12px;
+        left: 12px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .music-display { padding: 10px 16px; gap: 10px; }
+      .music-display .label .song { font-size: 0.8rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
+      .signature { transform: rotate(0deg); text-align: center; }
+
+      .cover .cover-photo {
+        width: clamp(140px, 40vw, 180px);
+        height: clamp(140px, 40vw, 180px);
+        border-width: 4px;
+        box-shadow:
+          0 12px 30px rgba(0, 0, 0, 0.5),
+          0 0 0 6px rgba(251, 250, 242, 0.8),
+          0 0 0 9px rgba(200, 240, 180, 0.4);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .photo-row.top,
+      .photo-row.middle,
+      .photo-row.bottom { height: 80px; }
+      .photo-track img { width: 110px; height: 80px; }
+      .letter { padding: 2.8rem 0.9rem 1.2rem; }
+      .music-display .label .song { font-size: 0.72rem; max-width: 100px; }
+      .music-display .label .title { font-size: 0.55rem; }
+      .equalizer { display: none; }
+      .cover .cover-photo { width: 130px; height: 130px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PHOTO ROWS -->
+  <div class="photo-rows">
+    <div class="photo-row top">
+      <div class="photo-track">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+      </div>
+      <div class="photo-track" aria-hidden="true">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+
+    <div class="photo-row middle">
+      <div class="photo-track reverse">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+      </div>
+      <div class="photo-track reverse" aria-hidden="true">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+
+    <div class="photo-row bottom">
+      <div class="photo-track">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+      </div>
+      <div class="photo-track" aria-hidden="true">
+        <img src="pictures/14.jpg" alt="" loading="lazy">
+        <img src="pictures/15.jpg" alt="" loading="lazy">
+        <img src="pictures/16.jpg" alt="" loading="lazy">
+        <img src="pictures/17.jpg" alt="" loading="lazy">
+        <img src="pictures/18.jpg" alt="" loading="lazy">
+        <img src="pictures/19.jpg" alt="" loading="lazy">
+        <img src="pictures/20.jpg" alt="" loading="lazy">
+        <img src="pictures/21.jpg" alt="" loading="lazy">
+        <img src="pictures/22.jpg" alt="" loading="lazy">
+        <img src="pictures/23.jpg" alt="" loading="lazy">
+        <img src="pictures/24.jpg" alt="" loading="lazy">
+        <img src="pictures/25.jpg" alt="" loading="lazy">
+        <img src="pictures/26.jpg" alt="" loading="lazy">
+        <img src="pictures/27.jpg" alt="" loading="lazy">
+        <img src="pictures/1.jpg" alt="" loading="lazy">
+        <img src="pictures/2.jpg" alt="" loading="lazy">
+        <img src="pictures/3.jpg" alt="" loading="lazy">
+        <img src="pictures/4.jpg" alt="" loading="lazy">
+        <img src="pictures/5.jpg" alt="" loading="lazy">
+        <img src="pictures/6.jpg" alt="" loading="lazy">
+        <img src="pictures/7.jpg" alt="" loading="lazy">
+        <img src="pictures/8.jpg" alt="" loading="lazy">
+        <img src="pictures/9.jpg" alt="" loading="lazy">
+        <img src="pictures/10.jpg" alt="" loading="lazy">
+        <img src="pictures/11.jpg" alt="" loading="lazy">
+        <img src="pictures/12.jpg" alt="" loading="lazy">
+        <img src="pictures/13.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="ambient-glow"></div>
+  <div class="particles"></div>
+
+  <!-- FLOATING HEARTS -->
+  <div class="hearts-layer" aria-hidden="true">
+    <span class="heart" style="left: 5%;  animation-duration: 14s; animation-delay: 0s;">❤</span>
+    <span class="heart" style="left: 12%; animation-duration: 18s; animation-delay: 2s;">♥</span>
+    <span class="heart" style="left: 20%; animation-duration: 12s; animation-delay: 5s;">❤</span>
+    <span class="heart" style="left: 28%; animation-duration: 16s; animation-delay: 1s;">♥</span>
+    <span class="heart" style="left: 36%; animation-duration: 20s; animation-delay: 7s;">❤</span>
+    <span class="heart" style="left: 44%; animation-duration: 13s; animation-delay: 3s;">♥</span>
+    <span class="heart" style="left: 52%; animation-duration: 17s; animation-delay: 9s;">❤</span>
+    <span class="heart" style="left: 60%; animation-duration: 15s; animation-delay: 4s;">♥</span>
+    <span class="heart" style="left: 68%; animation-duration: 19s; animation-delay: 6s;">❤</span>
+    <span class="heart" style="left: 76%; animation-duration: 11s; animation-delay: 8s;">♥</span>
+    <span class="heart" style="left: 84%; animation-duration: 16s; animation-delay: 2s;">❤</span>
+    <span class="heart" style="left: 92%; animation-duration: 14s; animation-delay: 10s;">♥</span>
+    <span class="heart" style="left: 8%;  animation-duration: 22s; animation-delay: 12s;">❤</span>
+    <span class="heart" style="left: 33%; animation-duration: 18s; animation-delay: 14s;">♥</span>
+    <span class="heart" style="left: 57%; animation-duration: 20s; animation-delay: 11s;">❤</span>
+    <span class="heart" style="left: 81%; animation-duration: 13s; animation-delay: 13s;">♥</span>
+  </div>
+
+  <!-- COVER -->
+  <div class="cover" id="cover" role="button" tabindex="0" aria-label="Click to open the letter">
+    <div class="cover-photo">
+      <img src="pictures/11.jpg" alt="Featured photo">
+    </div>
+    <span class="cover-title">Delleeeyyy</span>
+    <span class="cover-subtitle">✦ A Letter For You ✦</span>
+    <p class="cover-message">
+      "Click this letter lovelovee,<br>
+      this is for you. 💚"
+    </p>
+    <span class="cover-button">
+      Click this letter
+      <span class="arrow">→</span>
+    </span>
+  </div>
+
+  <!-- LETTER -->
+  <div class="letter-wrapper" id="letterWrapper">
+    <div class="letter">
+      <button class="close-btn" id="closeBtn" aria-label="Close letter">✕</button>
+      <div class="paper-lines"></div>
+
+      <div class="brand-header">
+        <h2>DELLEEEYYY</h2>
+        <span class="tagline">✦ My Lovelovee ✦</span>
+      </div>
+
+      <h1>Dear Yrre,</h1>
+
+      <p>
+        Hi by, ga, lovelovee, palangga, babyyy!! I'm writing this letter to know you that I love you so much, ga. Gusto sab nako nga dili ta moabot ug in ani kay nag promise tas usag usa nga walay biyaay. Na realize nako nga ikaw jud akong kailangan sa tanan2 sa pag cheer, pag motivate, ug pag higugmaay. Sa imo rajud ko naka realize nga ang gugma dili lalim apan mao jud ni ang realidad ug dapat be strong jud aron mapadayon ta, ga.
+      </p>
+
+      <p>
+        Sa tanan nga panag uban nato nga naay kalipay, ka sad, ka misunderstandings, tanan2, malipay jud kaayo ko nga maga uban ta kay ikaw rajud akong kalipay ug basta mag uban ta, happy na kaayo ko, ikaw rajud akong ubanan hangtod2. Bisan pa nga nay mga tao nga manghilabot saatoa unya makaingon ka nga disata mag uban publicly, maka huna huna jud ko nga dili lalim jud ang tanan samot nag naay mga ubang tao nga magtaka taka ug sulti pero gipaningkamotan jud nato nga bisag unsay mahitabo, dapat mag uban jud ta ug dili lang huna hunaon ang mga bad nga thoughts, ga.
+      </p>
+
+      <p>
+        I know that sometimes my words and actions didn't match, but i will try my best to be the best man for you, ga. Saimo jud ko naka feel nga kanang naay motabang saakoa when it times nga naa koy mga problema ug akong huna huna jud kay "unsaon naman nako ni?", "kayahon pa nako ni?", but here you are, you helped me many times, ga. Kanang mga first time jud, saimoha jud ko naka realize like kanang makaadto sa bxu with a girl that i love, mag sabay ug kaon sa bxu with a girl that i love, palitan, maka adto sa cinema, hatagan ug mga expensive gifts, etcc..... Daghan man jud first time pero dili nanako ma isa2.
+      </p>
+
+      <p>
+        Ga, I don't want to compete with your past. I don't want to erase the memories you had before me. I just hope nga you can also see the memories we made after. Because ga, I genuinely want to make more memories with you. Daghan pa kaayo kog gusto ma experience with you. Daghan pa ta ug buhaton para saatoa, food nga tilawan nga uban ta, pictures nga kita, serving God with us, church date, random moments nga kataw an, and simple days nga mahimong special simply because we're together.
+      </p>
+
+      <p>
+        I love you, ga. That's why I'm scared to lose you, but loving you also means respecting your feelings and your choice. I just hope that somewhere in your heart, naa pa gihapon ang part nga believes nga worth it pa ta sulayan and if there is, I hope we can slowly work things out together. No pressure, just two people who once chose each other, trying to understand if they can still choose each other again. I love you so much, ga. And whatever happens, I'll always be grateful for every memory, every first time, and every moment nga ikaw akong kauban.
+      </p>
+
+      <p>
+        I don't know what the future will look like, but if there's still a part of you that believes in us, I hope we can give ourselves another chance to make things right.
+      </p>
+
+      <p>
+        I love you always, ga:(, I'm here always for you, ga.
+      </p>
+
+      <div class="signature">
+        Love,<br>
+        Istowart
+        <small>para kanimo, lovelovee</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOVE TOAST POPUP (shows when clicking ✕) -->
+  <div class="love-toast" id="loveToast" role="alert" aria-live="polite">
+    <span class="toast-heart">💚</span>
+    <p class="toast-message">I love you always, ga:(</p>
+  </div>
+
+  <!-- REOPEN BUTTON -->
+  <div class="reopen-btn" id="reopenBtn" role="button" tabindex="0" aria-label="Open the letter again">
+    <span class="reopen-icon">💌</span>
+    <span>Open letter</span>
+  </div>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player hidden" id="musicPlayer">
+    <div class="music-display">
+      <span class="icon">🎶</span>
+      <span class="label">
+        <span class="title">Now Playing</span>
+        <span class="song">Dilaw - Janice</span>
+      </span>
+      <div class="equalizer">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <audio id="bgMusic" loop preload="auto">
+      <source src="music/Dilaw - Janice (Official Lyric Video).mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    (function() {
+      const audio = document.getElementById('bgMusic');
+      const cover = document.getElementById('cover');
+      const letterWrapper = document.getElementById('letterWrapper');
+      const musicPlayer = document.getElementById('musicPlayer');
+      const closeBtn = document.getElementById('closeBtn');
+      const reopenBtn = document.getElementById('reopenBtn');
+      const loveToast = document.getElementById('loveToast');
+      let isRevealed = false;
+      let toastTimeout = null;
+
+      // Always loop, always keep playing
+      audio.loop = true;
+      audio.volume = 0.55;
+
+      // Safety: if audio gets paused, resume it
+      audio.addEventListener('pause', () => {
+        if (!audio.ended) {
+          audio.play().catch(() => {});
+        }
+      });
+
+      // ---------- REVEAL LETTER + AUTO-PLAY MUSIC ----------
+      function revealLetter() {
+        if (isRevealed) return;
+        isRevealed = true;
+
+        cover.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        cover.style.opacity = '0';
+        cover.style.transform = 'translateY(-30px) scale(0.94)';
+
+        audio.play().catch((err) => {
+          console.warn('Autoplay failed:', err);
+        });
+
+        setTimeout(() => {
+          cover.style.display = 'none';
+          letterWrapper.classList.add('revealed');
+          musicPlayer.classList.remove('hidden');
+          reopenBtn.classList.remove('show');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+      }
+
+      cover.addEventListener('click', revealLetter);
+      cover.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          revealLetter();
+        }
+      });
+
+      // ---------- CLOSE LETTER WITH LOVE TOAST ----------
+      function closeLetter() {
+        if (!isRevealed) return;
+
+        // 1️⃣ Show the love toast popup
+        loveToast.classList.add('show');
+
+        // Clear any previous timeout
+        if (toastTimeout) clearTimeout(toastTimeout);
+
+        // 2️⃣ After 2.2 seconds, hide the toast and close the letter
+        toastTimeout = setTimeout(() => {
+          loveToast.classList.remove('show');
+
+          // Fade letter out
+          letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          letterWrapper.style.opacity = '0';
+          letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
+
+          setTimeout(() => {
+            letterWrapper.classList.remove('revealed');
+            letterWrapper.style.opacity = '';
+            letterWrapper.style.transform = '';
+            reopenBtn.classList.add('show');
+
+            // Keep music playing
+            if (audio.paused) {
+              audio.play().catch(() => {});
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 400);
+        }, 2200);   // 2.2 seconds for the toast message
+      }
+
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLetter();
+      });
+
+      closeBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          closeLetter();
+        }
+      });
+
+      // Also allow clicking the toast to dismiss it early
+      loveToast.addEventListener('click', () => {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        loveToast.classList.remove('show');
+        // Trigger the close after a brief delay
+        setTimeout(() => {
+          letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          letterWrapper.style.opacity = '0';
+          letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
+          setTimeout(() => {
+            letterWrapper.classList.remove('revealed');
+            letterWrapper.style.opacity = '';
+            letterWrapper.style.transform = '';
+            reopenBtn.classList.add('show');
+            if (audio.paused) audio.play().catch(() => {});
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 400);
+        }, 200);
+      });
+
+      // ---------- REOPEN LETTER ----------
+      reopenBtn.addEventListener('click', () => {
+        reopenBtn.classList.remove('show');
+        letterWrapper.classList.add('revealed');
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      reopenBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          reopenBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
