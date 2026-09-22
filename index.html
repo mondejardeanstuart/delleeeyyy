@@ -6,7 +6,33 @@
   <meta name="theme-color" content="#0f2e1a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- 🔒 HIDE LETTER FROM SOCIAL MEDIA PREVIEWS -->
+  <meta name="description" content="A special letter for you 💚">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <!-- Open Graph (Facebook, Messenger, Instagram) — only show the cover photo -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Delleeeyyy, my loveloveee">
+  <meta property="og:description" content="Click this letter lovelovee, this is for you. 💚">
+  <meta property="og:image" content="pictures/11.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="A letter for you">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Delleeeyyy, my loveloveee">
+  <meta name="twitter:description" content="Click this letter lovelovee, this is for you. 💚">
+  <meta name="twitter:image" content="pictures/11.jpg">
+
+  <!-- Prevent WhatsApp & Telegram from showing letter content -->
+  <meta property="og:site_name" content="Delleeeyyy">
+  <meta name="format-detection" content="telephone=no">
+
   <title>Delleeeyyy, my loveloveee</title>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -299,7 +325,7 @@
 
     .cover:hover .cover-button .arrow { transform: translateX(6px); }
 
-    /* ---------- LETTER ---------- */
+    /* ---------- LETTER (fully hidden until clicked) ---------- */
     .letter-wrapper {
       position: relative;
       z-index: 10;
@@ -521,7 +547,7 @@
       opacity: 0.8;
     }
 
-    /* ---------- LOVE TOAST POPUP ---------- */
+    /* ---------- LOVE TOAST ---------- */
     .love-toast {
       position: fixed;
       top: 50%;
@@ -784,448 +810,441 @@
   </style>
 </head>
 <body>
-  <!-- PHOTO ROWS -->
-  <div class="photo-rows">
-    <div class="photo-row top">
-      <div class="photo-track">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-      </div>
-      <div class="photo-track" aria-hidden="true">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-      </div>
+<!-- PHOTO ROWS -->
+<div class="photo-rows">
+  <div class="photo-row top">
+    <div class="photo-track">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
     </div>
-
-    <div class="photo-row middle">
-      <div class="photo-track reverse">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-      </div>
-      <div class="photo-track reverse" aria-hidden="true">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-      </div>
-    </div>
-
-    <div class="photo-row bottom">
-      <div class="photo-track">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-      </div>
-      <div class="photo-track" aria-hidden="true">
-        <img src="pictures/14.jpg" alt="" loading="lazy">
-        <img src="pictures/15.jpg" alt="" loading="lazy">
-        <img src="pictures/16.jpg" alt="" loading="lazy">
-        <img src="pictures/17.jpg" alt="" loading="lazy">
-        <img src="pictures/18.jpg" alt="" loading="lazy">
-        <img src="pictures/19.jpg" alt="" loading="lazy">
-        <img src="pictures/20.jpg" alt="" loading="lazy">
-        <img src="pictures/21.jpg" alt="" loading="lazy">
-        <img src="pictures/22.jpg" alt="" loading="lazy">
-        <img src="pictures/23.jpg" alt="" loading="lazy">
-        <img src="pictures/24.jpg" alt="" loading="lazy">
-        <img src="pictures/25.jpg" alt="" loading="lazy">
-        <img src="pictures/26.jpg" alt="" loading="lazy">
-        <img src="pictures/27.jpg" alt="" loading="lazy">
-        <img src="pictures/1.jpg" alt="" loading="lazy">
-        <img src="pictures/2.jpg" alt="" loading="lazy">
-        <img src="pictures/3.jpg" alt="" loading="lazy">
-        <img src="pictures/4.jpg" alt="" loading="lazy">
-        <img src="pictures/5.jpg" alt="" loading="lazy">
-        <img src="pictures/6.jpg" alt="" loading="lazy">
-        <img src="pictures/7.jpg" alt="" loading="lazy">
-        <img src="pictures/8.jpg" alt="" loading="lazy">
-        <img src="pictures/9.jpg" alt="" loading="lazy">
-        <img src="pictures/10.jpg" alt="" loading="lazy">
-        <img src="pictures/11.jpg" alt="" loading="lazy">
-        <img src="pictures/12.jpg" alt="" loading="lazy">
-        <img src="pictures/13.jpg" alt="" loading="lazy">
-      </div>
+    <div class="photo-track" aria-hidden="true">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
     </div>
   </div>
 
-  <div class="ambient-glow"></div>
-  <div class="particles"></div>
-
-  <!-- FLOATING HEARTS -->
-  <div class="hearts-layer" aria-hidden="true">
-    <span class="heart" style="left: 5%;  animation-duration: 14s; animation-delay: 0s;">❤</span>
-    <span class="heart" style="left: 12%; animation-duration: 18s; animation-delay: 2s;">♥</span>
-    <span class="heart" style="left: 20%; animation-duration: 12s; animation-delay: 5s;">❤</span>
-    <span class="heart" style="left: 28%; animation-duration: 16s; animation-delay: 1s;">♥</span>
-    <span class="heart" style="left: 36%; animation-duration: 20s; animation-delay: 7s;">❤</span>
-    <span class="heart" style="left: 44%; animation-duration: 13s; animation-delay: 3s;">♥</span>
-    <span class="heart" style="left: 52%; animation-duration: 17s; animation-delay: 9s;">❤</span>
-    <span class="heart" style="left: 60%; animation-duration: 15s; animation-delay: 4s;">♥</span>
-    <span class="heart" style="left: 68%; animation-duration: 19s; animation-delay: 6s;">❤</span>
-    <span class="heart" style="left: 76%; animation-duration: 11s; animation-delay: 8s;">♥</span>
-    <span class="heart" style="left: 84%; animation-duration: 16s; animation-delay: 2s;">❤</span>
-    <span class="heart" style="left: 92%; animation-duration: 14s; animation-delay: 10s;">♥</span>
-    <span class="heart" style="left: 8%;  animation-duration: 22s; animation-delay: 12s;">❤</span>
-    <span class="heart" style="left: 33%; animation-duration: 18s; animation-delay: 14s;">♥</span>
-    <span class="heart" style="left: 57%; animation-duration: 20s; animation-delay: 11s;">❤</span>
-    <span class="heart" style="left: 81%; animation-duration: 13s; animation-delay: 13s;">♥</span>
+  <div class="photo-row middle">
+    <div class="photo-track reverse">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+    </div>
+    <div class="photo-track reverse" aria-hidden="true">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+    </div>
   </div>
 
-  <!-- COVER -->
-  <div class="cover" id="cover" role="button" tabindex="0" aria-label="Click to open the letter">
-    <div class="cover-photo">
-      <img src="pictures/11.jpg" alt="Featured photo">
+  <div class="photo-row bottom">
+    <div class="photo-track">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
     </div>
-    <span class="cover-title">Delleeeyyy</span>
-    <span class="cover-subtitle">✦ A Letter For You ✦</span>
-    <p class="cover-message">
-      "Click this letter lovelovee,<br>
-      this is for you. 💚"
-    </p>
-    <span class="cover-button">
+    <div class="photo-track" aria-hidden="true">
+      <img src="pictures/14.jpg" alt="" loading="lazy">
+      <img src="pictures/15.jpg" alt="" loading="lazy">
+      <img src="pictures/16.jpg" alt="" loading="lazy">
+      <img src="pictures/17.jpg" alt="" loading="lazy">
+      <img src="pictures/18.jpg" alt="" loading="lazy">
+      <img src="pictures/19.jpg" alt="" loading="lazy">
+      <img src="pictures/20.jpg" alt="" loading="lazy">
+      <img src="pictures/21.jpg" alt="" loading="lazy">
+      <img src="pictures/22.jpg" alt="" loading="lazy">
+      <img src="pictures/23.jpg" alt="" loading="lazy">
+      <img src="pictures/24.jpg" alt="" loading="lazy">
+      <img src="pictures/25.jpg" alt="" loading="lazy">
+      <img src="pictures/26.jpg" alt="" loading="lazy">
+      <img src="pictures/27.jpg" alt="" loading="lazy">
+      <img src="pictures/1.jpg" alt="" loading="lazy">
+      <img src="pictures/2.jpg" alt="" loading="lazy">
+      <img src="pictures/3.jpg" alt="" loading="lazy">
+      <img src="pictures/4.jpg" alt="" loading="lazy">
+      <img src="pictures/5.jpg" alt="" loading="lazy">
+      <img src="pictures/6.jpg" alt="" loading="lazy">
+      <img src="pictures/7.jpg" alt="" loading="lazy">
+      <img src="pictures/8.jpg" alt="" loading="lazy">
+      <img src="pictures/9.jpg" alt="" loading="lazy">
+      <img src="pictures/10.jpg" alt="" loading="lazy">
+      <img src="pictures/11.jpg" alt="" loading="lazy">
+      <img src="pictures/12.jpg" alt="" loading="lazy">
+      <img src="pictures/13.jpg" alt="" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<div class="ambient-glow"></div>
+<div class="particles"></div>
+
+<!-- FLOATING HEARTS -->
+<div class="hearts-layer" aria-hidden="true">
+  <span class="heart" style="left: 5%;  animation-duration: 14s; animation-delay: 0s;">❤</span>
+  <span class="heart" style="left: 12%; animation-duration: 18s; animation-delay: 2s;">♥</span>
+  <span class="heart" style="left: 20%; animation-duration: 12s; animation-delay: 5s;">❤</span>
+  <span class="heart" style="left: 28%; animation-duration: 16s; animation-delay: 1s;">♥</span>
+  <span class="heart" style="left: 36%; animation-duration: 20s; animation-delay: 7s;">❤</span>
+  <span class="heart" style="left: 44%; animation-duration: 13s; animation-delay: 3s;">♥</span>
+  <span class="heart" style="left: 52%; animation-duration: 17s; animation-delay: 9s;">❤</span>
+  <span class="heart" style="left: 60%; animation-duration: 15s; animation-delay: 4s;">♥</span>
+  <span class="heart" style="left: 68%; animation-duration: 19s; animation-delay: 6s;">❤</span>
+  <span class="heart" style="left: 76%; animation-duration: 11s; animation-delay: 8s;">♥</span>
+  <span class="heart" style="left: 84%; animation-duration: 16s; animation-delay: 2s;">❤</span>
+  <span class="heart" style="left: 92%; animation-duration: 14s; animation-delay: 10s;">♥</span>
+  <span class="heart" style="left: 8%;  animation-duration: 22s; animation-delay: 12s;">❤</span>
+  <span class="heart" style="left: 33%; animation-duration: 18s; animation-delay: 14s;">♥</span>
+  <span class="heart" style="left: 57%; animation-duration: 20s; animation-delay: 11s;">❤</span>
+  <span class="heart" style="left: 81%; animation-duration: 13s; animation-delay: 13s;">♥</span>
+</div>
+
+<!-- COVER -->
+<div class="cover" id="cover" role="button" tabindex="0" aria-label="Click to open the letter">
+  <div class="cover-photo">
+    <img src="pictures/11.jpg" alt="Featured photo">
+  </div>
+  <span class="cover-title">Delleeeyyy</span>
+  <span class="cover-subtitle">✦ A Letter For You ✦</span>
+  <p class="cover-message">
+    "Click this letter lovelovee,<br>
+    this is for you. 💚"
+  </p>
+  <span class="cover-button">
       Click this letter
       <span class="arrow">→</span>
     </span>
-  </div>
+</div>
 
-  <!-- LETTER -->
-  <div class="letter-wrapper" id="letterWrapper">
-    <div class="letter">
-      <button class="close-btn" id="closeBtn" aria-label="Close letter">✕</button>
-      <div class="paper-lines"></div>
+<!-- LETTER -->
+<div class="letter-wrapper" id="letterWrapper">
+  <div class="letter">
+    <button class="close-btn" id="closeBtn" aria-label="Close letter">✕</button>
+    <div class="paper-lines"></div>
 
-      <div class="brand-header">
-        <h2>DELLEEEYYY</h2>
-        <span class="tagline">✦ My Lovelovee ✦</span>
-      </div>
+    <div class="brand-header">
+      <h2>DELLEEEYYY</h2>
+      <span class="tagline">✦ My Lovelovee ✦</span>
+    </div>
 
-      <h1>Dear Yrre,</h1>
+    <h1>Dear Yrre,</h1>
 
-      <p>
-        Hi by, ga, lovelovee, palangga, babyyy!! I'm writing this letter to know you that I love you so much, ga. Gusto sab nako nga dili ta moabot ug in ani kay nag promise tas usag usa nga walay biyaay. Na realize nako nga ikaw jud akong kailangan sa tanan2 sa pag cheer, pag motivate, ug pag higugmaay. Sa imo rajud ko naka realize nga ang gugma dili lalim apan mao jud ni ang realidad ug dapat be strong jud aron mapadayon ta, ga.
-      </p>
+    <p>
+      Hi by, ga, lovelovee, palangga, babyyy!! I'm writing this letter to know you that I love you so much, ga. Gusto sab nako nga dili ta moabot ug in ani kay nag promise tas usag usa nga walay biyaay. Na realize nako nga ikaw jud akong kailangan sa tanan2 sa pag cheer, pag motivate, ug pag higugmaay. Sa imo rajud ko naka realize nga ang gugma dili lalim apan mao jud ni ang realidad ug dapat be strong jud aron mapadayon ta, ga.
+    </p>
 
-      <p>
-        Sa tanan nga panag uban nato nga naay kalipay, ka sad, ka misunderstandings, tanan2, malipay jud kaayo ko nga maga uban ta kay ikaw rajud akong kalipay ug basta mag uban ta, happy na kaayo ko, ikaw rajud akong ubanan hangtod2. Bisan pa nga nay mga tao nga manghilabot saatoa unya makaingon ka nga disata mag uban publicly, maka huna huna jud ko nga dili lalim jud ang tanan samot nag naay mga ubang tao nga magtaka taka ug sulti pero gipaningkamotan jud nato nga bisag unsay mahitabo, dapat mag uban jud ta ug dili lang huna hunaon ang mga bad nga thoughts, ga.
-      </p>
+    <p>
+      Sa tanan nga panag uban nato nga naay kalipay, ka sad, ka misunderstandings, tanan2, malipay jud kaayo ko nga maga uban ta kay ikaw rajud akong kalipay ug basta mag uban ta, happy na kaayo ko, ikaw rajud akong ubanan hangtod2. Bisan pa nga nay mga tao nga manghilabot saatoa unya makaingon ka nga disata mag uban publicly, maka huna huna jud ko nga dili lalim jud ang tanan samot nag naay mga ubang tao nga magtaka taka ug sulti pero gipaningkamotan jud nato nga bisag unsay mahitabo, dapat mag uban jud ta ug dili lang huna hunaon ang mga bad nga thoughts, ga.
+    </p>
 
-      <p>
-        I know that sometimes my words and actions didn't match, but i will try my best to be the best man for you, ga. Saimo jud ko naka feel nga kanang naay motabang saakoa when it times nga naa koy mga problema ug akong huna huna jud kay "unsaon naman nako ni?", "kayahon pa nako ni?", but here you are, you helped me many times, ga. Kanang mga first time jud, saimoha jud ko naka realize like kanang makaadto sa bxu with a girl that i love, mag sabay ug kaon sa bxu with a girl that i love, palitan, maka adto sa cinema, hatagan ug mga expensive gifts, etcc..... Daghan man jud first time pero dili nanako ma isa2.
-      </p>
+    <p>
+      I know that sometimes my words and actions didn't match, but i will try my best to be the best man for you, ga. Saimo jud ko naka feel nga kanang naay motabang saakoa when it times nga naa koy mga problema ug akong huna huna jud kay "unsaon naman nako ni?", "kayahon pa nako ni?", but here you are, you helped me many times, ga. Kanang mga first time jud, saimoha jud ko naka realize like kanang makaadto sa bxu with a girl that i love, mag sabay ug kaon sa bxu with a girl that i love, palitan, maka adto sa cinema, hatagan ug mga expensive gifts, etcc..... Daghan man jud first time pero dili nanako ma isa2.
+    </p>
 
-      <p>
-        Ga, I don't want to compete with your past. I don't want to erase the memories you had before me. I just hope nga you can also see the memories we made after. Because ga, I genuinely want to make more memories with you. Daghan pa kaayo kog gusto ma experience with you. Daghan pa ta ug buhaton para saatoa, food nga tilawan nga uban ta, pictures nga kita, serving God with us, church date, random moments nga kataw an, and simple days nga mahimong special simply because we're together.
-      </p>
+    <p>
+      Ga, I don't want to compete with your past. I don't want to erase the memories you had before me. I just hope nga you can also see the memories we made after. Because ga, I genuinely want to make more memories with you. Daghan pa kaayo kog gusto ma experience with you. Daghan pa ta ug buhaton para saatoa, food nga tilawan nga uban ta, pictures nga kita, serving God with us, church date, random moments nga kataw an, and simple days nga mahimong special simply because we're together.
+    </p>
 
-      <p>
-        I love you, ga. That's why I'm scared to lose you, but loving you also means respecting your feelings and your choice. I just hope that somewhere in your heart, naa pa gihapon ang part nga believes nga worth it pa ta sulayan and if there is, I hope we can slowly work things out together. No pressure, just two people who once chose each other, trying to understand if they can still choose each other again. I love you so much, ga. And whatever happens, I'll always be grateful for every memory, every first time, and every moment nga ikaw akong kauban.
-      </p>
+    <p>
+      I love you, ga. That's why I'm scared to lose you, but loving you also means respecting your feelings and your choice. I just hope that somewhere in your heart, naa pa gihapon ang part nga believes nga worth it pa ta sulayan and if there is, I hope we can slowly work things out together. No pressure, just two people who once chose each other, trying to understand if they can still choose each other again. I love you so much, ga. And whatever happens, I'll always be grateful for every memory, every first time, and every moment nga ikaw akong kauban.
+    </p>
 
-      <p>
-        I don't know what the future will look like, but if there's still a part of you that believes in us, I hope we can give ourselves another chance to make things right.
-      </p>
+    <p>
+      I don't know what the future will look like, but if there's still a part of you that believes in us, I hope we can give ourselves another chance to make things right.
+    </p>
 
-      <p>
-        I love you always, ga:(, I'm here always for you, ga.
-      </p>
+    <p>
+      I love you always, ga:(, I'm here always for you, ga.
+    </p>
 
-      <div class="signature">
-        Love,<br>
-        Istowart
-        <small>para kanimo, lovelovee</small>
-      </div>
+    <div class="signature">
+      Love,<br>
+      Istowart
+      <small>para kanimo, lovelovee</small>
     </div>
   </div>
+</div>
 
-  <!-- LOVE TOAST POPUP (shows when clicking ✕) -->
-  <div class="love-toast" id="loveToast" role="alert" aria-live="polite">
-    <span class="toast-heart">💚</span>
-    <p class="toast-message">I love you always, ga:(</p>
-  </div>
+<!-- LOVE TOAST POPUP (shows when clicking ✕) -->
+<div class="love-toast" id="loveToast" role="alert" aria-live="polite">
+  <span class="toast-heart">💚</span>
+  <p class="toast-message">I love you always, ga:(</p>
+</div>
 
-  <!-- REOPEN BUTTON -->
-  <div class="reopen-btn" id="reopenBtn" role="button" tabindex="0" aria-label="Open the letter again">
-    <span class="reopen-icon">💌</span>
-    <span>Open letter</span>
-  </div>
+<!-- REOPEN BUTTON -->
+<div class="reopen-btn" id="reopenBtn" role="button" tabindex="0" aria-label="Open the letter again">
+  <span class="reopen-icon">💌</span>
+  <span>Open letter</span>
+</div>
 
-  <!-- MUSIC PLAYER -->
-  <div class="music-player hidden" id="musicPlayer">
-    <div class="music-display">
-      <span class="icon">🎶</span>
-      <span class="label">
+<!-- MUSIC PLAYER -->
+<div class="music-player hidden" id="musicPlayer">
+  <div class="music-display">
+    <span class="icon">🎶</span>
+    <span class="label">
         <span class="title">Now Playing</span>
         <span class="song">Dilaw - Janice</span>
       </span>
-      <div class="equalizer">
-        <span></span><span></span><span></span><span></span>
-      </div>
+    <div class="equalizer">
+      <span></span><span></span><span></span><span></span>
     </div>
-    <audio id="bgMusic" loop preload="auto">
-      <source src="music/Dilaw - Janice (Official Lyric Video).mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
   </div>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/Dilaw - Janice (Official Lyric Video).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
 
-  <script>
-    (function() {
-      const audio = document.getElementById('bgMusic');
-      const cover = document.getElementById('cover');
-      const letterWrapper = document.getElementById('letterWrapper');
-      const musicPlayer = document.getElementById('musicPlayer');
-      const closeBtn = document.getElementById('closeBtn');
-      const reopenBtn = document.getElementById('reopenBtn');
-      const loveToast = document.getElementById('loveToast');
-      let isRevealed = false;
-      let toastTimeout = null;
+<script>
+  (function() {
+    const audio = document.getElementById('bgMusic');
+    const cover = document.getElementById('cover');
+    const letterWrapper = document.getElementById('letterWrapper');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const closeBtn = document.getElementById('closeBtn');
+    const reopenBtn = document.getElementById('reopenBtn');
+    const loveToast = document.getElementById('loveToast');
+    let isRevealed = false;
+    let toastTimeout = null;
 
-      // Always loop, always keep playing
-      audio.loop = true;
-      audio.volume = 0.55;
+    // Always loop, always keep playing
+    audio.loop = true;
+    audio.volume = 0.55;
 
-      // Safety: if audio gets paused, resume it
-      audio.addEventListener('pause', () => {
-        if (!audio.ended) {
-          audio.play().catch(() => {});
-        }
+    // Safety: if audio gets paused, resume it
+    audio.addEventListener('pause', () => {
+      if (!audio.ended) {
+        audio.play().catch(() => {});
+      }
+    });
+
+    // ---------- REVEAL LETTER + AUTO-PLAY MUSIC ----------
+    function revealLetter() {
+      if (isRevealed) return;
+      isRevealed = true;
+
+      cover.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      cover.style.opacity = '0';
+      cover.style.transform = 'translateY(-30px) scale(0.94)';
+
+      audio.play().catch((err) => {
+        console.warn('Autoplay failed:', err);
       });
 
-      // ---------- REVEAL LETTER + AUTO-PLAY MUSIC ----------
-      function revealLetter() {
-        if (isRevealed) return;
-        isRevealed = true;
+      setTimeout(() => {
+        cover.style.display = 'none';
+        letterWrapper.classList.add('revealed');
+        musicPlayer.classList.remove('hidden');
+        reopenBtn.classList.remove('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 500);
+    }
 
-        cover.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        cover.style.opacity = '0';
-        cover.style.transform = 'translateY(-30px) scale(0.94)';
+    cover.addEventListener('click', revealLetter);
+    cover.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        revealLetter();
+      }
+    });
 
-        audio.play().catch((err) => {
-          console.warn('Autoplay failed:', err);
-        });
+    // ---------- CLOSE LETTER WITH LOVE TOAST ----------
+    function closeLetter() {
+      if (!isRevealed) return;
+
+      loveToast.classList.add('show');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+
+      toastTimeout = setTimeout(() => {
+        loveToast.classList.remove('show');
+
+        letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        letterWrapper.style.opacity = '0';
+        letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
 
         setTimeout(() => {
-          cover.style.display = 'none';
-          letterWrapper.classList.add('revealed');
-          musicPlayer.classList.remove('hidden');
-          reopenBtn.classList.remove('show');
+          letterWrapper.classList.remove('revealed');
+          letterWrapper.style.opacity = '';
+          letterWrapper.style.transform = '';
+          reopenBtn.classList.add('show');
+
+          if (audio.paused) {
+            audio.play().catch(() => {});
+          }
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 500);
-      }
+        }, 400);
+      }, 2200);
+    }
 
-      cover.addEventListener('click', revealLetter);
-      cover.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          revealLetter();
-        }
-      });
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLetter();
+    });
 
-      // ---------- CLOSE LETTER WITH LOVE TOAST ----------
-      function closeLetter() {
-        if (!isRevealed) return;
-
-        // 1️⃣ Show the love toast popup
-        loveToast.classList.add('show');
-
-        // Clear any previous timeout
-        if (toastTimeout) clearTimeout(toastTimeout);
-
-        // 2️⃣ After 2.2 seconds, hide the toast and close the letter
-        toastTimeout = setTimeout(() => {
-          loveToast.classList.remove('show');
-
-          // Fade letter out
-          letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          letterWrapper.style.opacity = '0';
-          letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
-
-          setTimeout(() => {
-            letterWrapper.classList.remove('revealed');
-            letterWrapper.style.opacity = '';
-            letterWrapper.style.transform = '';
-            reopenBtn.classList.add('show');
-
-            // Keep music playing
-            if (audio.paused) {
-              audio.play().catch(() => {});
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }, 400);
-        }, 2200);   // 2.2 seconds for the toast message
-      }
-
-      closeBtn.addEventListener('click', (e) => {
+    closeBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
         e.stopPropagation();
         closeLetter();
-      });
+      }
+    });
 
-      closeBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          e.stopPropagation();
-          closeLetter();
-        }
-      });
-
-      // Also allow clicking the toast to dismiss it early
-      loveToast.addEventListener('click', () => {
-        if (toastTimeout) clearTimeout(toastTimeout);
-        loveToast.classList.remove('show');
-        // Trigger the close after a brief delay
+    loveToast.addEventListener('click', () => {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      loveToast.classList.remove('show');
+      setTimeout(() => {
+        letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        letterWrapper.style.opacity = '0';
+        letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
         setTimeout(() => {
-          letterWrapper.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          letterWrapper.style.opacity = '0';
-          letterWrapper.style.transform = 'translateY(30px) scale(0.95)';
-          setTimeout(() => {
-            letterWrapper.classList.remove('revealed');
-            letterWrapper.style.opacity = '';
-            letterWrapper.style.transform = '';
-            reopenBtn.classList.add('show');
-            if (audio.paused) audio.play().catch(() => {});
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }, 400);
-        }, 200);
-      });
+          letterWrapper.classList.remove('revealed');
+          letterWrapper.style.opacity = '';
+          letterWrapper.style.transform = '';
+          reopenBtn.classList.add('show');
+          if (audio.paused) audio.play().catch(() => {});
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 400);
+      }, 200);
+    });
 
-      // ---------- REOPEN LETTER ----------
-      reopenBtn.addEventListener('click', () => {
-        reopenBtn.classList.remove('show');
-        letterWrapper.classList.add('revealed');
-        if (audio.paused) {
-          audio.play().catch(() => {});
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+    // ---------- REOPEN LETTER ----------
+    reopenBtn.addEventListener('click', () => {
+      reopenBtn.classList.remove('show');
+      letterWrapper.classList.add('revealed');
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-      reopenBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          reopenBtn.click();
-        }
-      });
-    })();
-  </script>
+    reopenBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        reopenBtn.click();
+      }
+    });
+  })();
+</script>
 </body>
 </html>
